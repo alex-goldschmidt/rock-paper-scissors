@@ -9,11 +9,13 @@
 <body>
    <script>
       function computerPlay() {
-    const choices = ["Rock", "Paper", "Scissors"]
-    function computerPlay (choices) {
-    return choices[Math.floor(Math.random() * choices.length)];
+    // generate random number between 0-2 inclusive
+    let num = Math.floor(Math.random() * 3);
+    return num === 0 ? "ROCK"
+         : num === 1 ? "PAPER"
+         : "SCISSORS";
 }
-}
+
 
 function gameRound(playerSelection, computerSelection) {
     // return if the user won the round
