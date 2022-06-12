@@ -22,24 +22,37 @@ const computerSelection = choices[Math.floor(Math.random() * choices.length)];
 
 function playRound(playerSelection, computerSelection) {
    if (playerSelection===computerSelection) {
-        return ("It's a tie!");
+        return null 
     }  else if (playerSelection.toUpperCase()==="ROCK" && computerSelection.toUpperCase()==="SCISSORS") {
-        return ("You've won!");
+        console.log("You've won!")
+        return true  
      } else if (playerSelection.toUpperCase()==="ROCK" && computerSelection.toUpperCase()==="PAPER") {
-        return ("You've lost!");
+        console.log("You've lost!");
+        return false 
      } else if (playerSelection.toUpperCase()==="PAPER" && computerSelection.toUpperCase()==="ROCK") {
-        return ("You've won!");
+        console.log("You've won!");
+        return true 
      } else if (playerSelection.toUpperCase()==="PAPER" && computerSelection.toUpperCase()==="SCISSORS") {
-        return ("You've lost!");
+        console.log("You've lost!");
+        return false 
      } else if (playerSelection.toUpperCase()==="SCISSORS" && computerSelection.toUpperCase()==="PAPER") {
-        return ("You've won!");
+        console.log("You've won!");
+        return false 
      } else if (playerSelection.toUpperCase()==="SCISSORS" && computerSelection.toUpperCase()==="ROCK") {
-        return ("You've lost");
+        console.log("You've lost");
+        return false 
      } else {
-        return "Not a valid input"
+        console.log("Invalid inputs")
+        return null
      }
     }
     console.log(playRound(playerSelection, computerSelection));
+
+    // Make 5 rounds of Rock,Paper, Scissors //
+
+    function game(playerSelection, computerSelection){
+      console.log(playRound(playerSelection, computerSelection));
+    }
     </script>
     
 </body>
