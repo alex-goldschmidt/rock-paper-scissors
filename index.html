@@ -27,6 +27,8 @@
 
 const Container = document.querySelector('.Container');
  
+let playerWins = 0;
+let computerWins = 0;
 const rock = document.querySelector('#rockButton');
 const paper = document.querySelector('#paperButton')
 const scissors = document.querySelector('#scissorsButton')
@@ -39,7 +41,7 @@ Container.appendChild(results);
 //paper.addEventListener('click', e => console.log(e));
 //scissors.addEventListener('click', e => console.log(e));
 
-function gameRound(playerSelection,computerSelection) {
+function playRound(playerSelection,computerSelection) {
     console.log(playerSelection, computerSelection);
     // return if the user won the round
     if (playerSelection === computerSelection) {
@@ -50,52 +52,77 @@ function gameRound(playerSelection,computerSelection) {
         const p = document.createElement('p')
         p.innerText = "You lose! Paper beats Rock.";
         results.appendChild(p);
+        computerWins++
     } else if (playerSelection.toUpperCase() === "ROCK" && computerSelection === "SCISSORS"){
         const p = document.createElement('p')
         p.innerText = "You win! Rock beats Scissors.";
         results.appendChild(p);
+        playerWins++
     } else if (playerSelection.toUpperCase() === "PAPER" && computerSelection === "ROCK") {
         const p = document.createElement('p')
         p.innerText = "You win! Paper beats Rock.";
         results.appendChild(p);
+        playerWins++
     } else if (playerSelection.toUpperCase() === "PAPER" && computerSelection === "SCISSORS") {
         const p = document.createElement('p')
         p.innerText = "You lose! Scissors beats Paper.";
         results.appendChild(p);
+        computerWins++
     } else if (playerSelection.toUpperCase() === "SCISSORS" && computerSelection === "ROCK") {
         const p = document.createElement('p')
         p.innerText = "You Lose! Rock beats Scissors.";
         results.appendChild(p);
+        computerWins++
     } else if (playerSelection.toUpperCase() === "SCISSORS" && computerSelection === "PAPER") {
         const p = document.createElement('p')
         p.innerText = "You Win! Scissors beats Paper.";
         results.appendChild(p);
+        playerWins++
     } else {
         const p = document.createElement('p')
         p.innerText = "It's a tie! Nobody wins.";
         results.appendChild(p);
     }
+
 }
 
-//add event listners to for r , p, s that call gameRound function //
+const winnerCheck = (playerWins, computerWins) => {
+    console.log(playerWins, computerWins);
+    if (playerWins === 5) {
+        const h2 = document.createElement('h2');
+        h2.classList.add('player-won');
+        h2.innerText = `You won ${playerWins} to ${computerWins}!`;
+        results.appendChild(h2);
+    }
+    if (computerWins === 5) {
+        const h2 = document.createElement('h2');
+        h2.classList.add('computer-won');
+        h2.innerText = `You won ${playerWins} to ${computerWins}!`;
+        results.appendChild(h2);
+    }
+}
+
+//add event listeners to for r , p, s that call gameRound function //
 rock.addEventListener('click', () => {
     const computerSelection = computerPlay()  
     const playerSelection = 'rock'
-    gameRound(playerSelection, computerSelection)
+    playRound(playerSelection, computerSelection)
+    winnerCheck(playerWins, computerWins);
 } )
 
 paper.addEventListener('click', () => {
     const computerSelection = computerPlay()
     const playerSelection = 'paper'
-    gameRound(playerSelection, computerSelection)
+    playRound(playerSelection, computerSelection)
+    winnerCheck(playerWins, computerWins);
 } )
 
 scissors.addEventListener('click', () => {
     const computerSelection = computerPlay()
     const playerSelection = 'scissors'
-    gameRound(playerSelection, computerSelection)
+    playRound(playerSelection, computerSelection)
+    winnerCheck(playerWins, computerWins);
 } )
-
 
 function game() {
     let playerSelection, computerSelection, result;
@@ -139,4 +166,5 @@ console.log(game());
         console.log(`Current Score - Player: ${playerWins}, Computer: ${computerWins}`);
     }
 -->
+
 
