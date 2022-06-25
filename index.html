@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="Container">
+        <h1 class="choices">Choices</h1>
+        <button id="rockButton">Rock</button>
+        <button id="paperButton">Paper</button>
+        <button id="scissorsButton">Scissors</button>
+        <div id="results"></div>
+    </div>
+    <div class="results"></div>
    <script>
-      function computerPlay() {
+    function computerPlay() {
     // generate random number between 0-2 inclusive
     let num = Math.floor(Math.random() * 3);
     return num === 0 ? "ROCK"
@@ -16,42 +25,101 @@
          : "SCISSORS";
 }
 
+const Container = document.querySelector('.Container');
+ 
+const rock = document.querySelector('#rockButton');
+const paper = document.querySelector('#paperButton')
+const scissors = document.querySelector('#scissorsButton')
+const results = document.querySelector("#results")
 
-function gameRound(playerSelection, computerSelection) {
+Container.appendChild(rock);
+Container.appendChild(paper);
+Container.appendChild(scissors);
+Container.appendChild(results);
+//paper.addEventListener('click', e => console.log(e));
+//scissors.addEventListener('click', e => console.log(e));
+
+function gameRound(playerSelection,computerSelection) {
+    console.log(playerSelection, computerSelection);
     // return if the user won the round
     if (playerSelection === computerSelection) {
-        console.log("It's a tie! Nobody wins.");
-        return null
+        const p = document.createElement('p')
+        p.innerText = "It's a tie! Nobody wins.";
+        results.appendChild(p);
     } else if (playerSelection.toUpperCase() === "ROCK" && computerSelection === "PAPER") {
-        console.log("You Lose! Paper beats Rock.");
-        return false
+        const p = document.createElement('p')
+        p.innerText = "You lose! Paper beats Rock.";
+        results.appendChild(p);
     } else if (playerSelection.toUpperCase() === "ROCK" && computerSelection === "SCISSORS"){
-        console.log("You Win! Rock beats Scissors.");
-        return true
+        const p = document.createElement('p')
+        p.innerText = "You win! Rock beats Scissors.";
+        results.appendChild(p);
     } else if (playerSelection.toUpperCase() === "PAPER" && computerSelection === "ROCK") {
-        console.log("You Win! Paper beats Rock.");
-        return true
+        const p = document.createElement('p')
+        p.innerText = "You win! Paper beats Rock.";
+        results.appendChild(p);
     } else if (playerSelection.toUpperCase() === "PAPER" && computerSelection === "SCISSORS") {
-        console.log("You Lose! Scissors beats Paper.");
-        return false
+        const p = document.createElement('p')
+        p.innerText = "You lose! Scissors beats Paper.";
+        results.appendChild(p);
     } else if (playerSelection.toUpperCase() === "SCISSORS" && computerSelection === "ROCK") {
-        console.log("You Lose! Rock beats Scissors.");
-        return false
+        const p = document.createElement('p')
+        p.innerText = "You Lose! Rock beats Scissors.";
+        results.appendChild(p);
     } else if (playerSelection.toUpperCase() === "SCISSORS" && computerSelection === "PAPER") {
-        console.log("You Win! Scissors beats Paper.");
-        return false
+        const p = document.createElement('p')
+        p.innerText = "You Win! Scissors beats Paper.";
+        results.appendChild(p);
     } else {
-        console.log("Invalid Inputs.");
-        return null
+        const p = document.createElement('p')
+        p.innerText = "It's a tie! Nobody wins.";
+        results.appendChild(p);
     }
 }
+
+//add event listners to for r , p, s that call gameRound function //
+rock.addEventListener('click', () => {
+    const computerSelection = computerPlay()  
+    const playerSelection = 'rock'
+    gameRound(playerSelection, computerSelection)
+} )
+
+paper.addEventListener('click', () => {
+    const computerSelection = computerPlay()
+    const playerSelection = 'paper'
+    gameRound(playerSelection, computerSelection)
+} )
+
+scissors.addEventListener('click', () => {
+    const computerSelection = computerPlay()
+    const playerSelection = 'scissors'
+    gameRound(playerSelection, computerSelection)
+} )
+
 
 function game() {
     let playerSelection, computerSelection, result;
     let playerWins = 0;
     let computerWins = 0;
     const selections = ["ROCK", "PAPER", "SCISSORS"];
-    for (let i = 0; i < 5; i++) {
+   
+    if (playerWins > computerWins) {
+        return "User Wins!"
+    } else if (computerWins > playerWins) {
+        return "Computer Wins! You Lose :(."
+    } else {
+        return "No one wins! Play again?"
+    }
+}
+
+console.log(game());
+   </script>
+<!--This is where the logic of the game ends-->
+</body>
+</html>
+
+<!--
+     for (let i = 0; i < 1; i++) {
         playerSelection = prompt()
         computerSelection = computerPlay();
 
@@ -70,18 +138,5 @@ function game() {
         } 
         console.log(`Current Score - Player: ${playerWins}, Computer: ${computerWins}`);
     }
+-->
 
-    if (playerWins > computerWins) {
-        return "User Wins!"
-    } else if (computerWins > playerWins) {
-        return "Computer Wins! You Lose :(."
-    } else {
-        return "No one wins! Play again?"
-    }
-}
-
-console.log(game());
-   </script>
-    
-</body>
-</html>
