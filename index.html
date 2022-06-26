@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="running-score"></div>
+    <span class="player-score"></span>
+    <span class="computer-score"></span>
     <div class="Container">
         <h1 class="choices">Choices</h1>
         <button id="rockButton">Rock</button>
@@ -30,9 +33,12 @@ const Container = document.querySelector('.Container');
 let playerWins = 0;
 let computerWins = 0;
 const rock = document.querySelector('#rockButton');
-const paper = document.querySelector('#paperButton')
-const scissors = document.querySelector('#scissorsButton')
-const results = document.querySelector("#results")
+const paper = document.querySelector('#paperButton');
+const scissors = document.querySelector('#scissorsButton');
+const results = document.querySelector("#results");
+const playerScoreSpan = document.querySelector('.player-score')
+const computerScoreSpan = document.querySelector('.computer-score')
+
 
 Container.appendChild(rock);
 Container.appendChild(paper);
@@ -107,6 +113,8 @@ rock.addEventListener('click', () => {
     const computerSelection = computerPlay()  
     const playerSelection = 'rock'
     playRound(playerSelection, computerSelection)
+    playerScoreSpan.innerText = `Player Score:   ${playerWins}`
+    computerScoreSpan.innerText = `Computer Score:   ${computerWins}`
     winnerCheck(playerWins, computerWins);
 } )
 
@@ -114,6 +122,8 @@ paper.addEventListener('click', () => {
     const computerSelection = computerPlay()
     const playerSelection = 'paper'
     playRound(playerSelection, computerSelection)
+    playerScoreSpan.innerText = `Player Score:   ${playerWins}`
+    computerScoreSpan.innerText = `Computer Score:   ${computerWins}`
     winnerCheck(playerWins, computerWins);
 } )
 
@@ -121,6 +131,8 @@ scissors.addEventListener('click', () => {
     const computerSelection = computerPlay()
     const playerSelection = 'scissors'
     playRound(playerSelection, computerSelection)
+    playerScoreSpan.innerText = `Player Score:   ${playerWins}`
+    computerScoreSpan.innerText = `Computer Score:   ${computerWins}`
     winnerCheck(playerWins, computerWins);
 } )
 
