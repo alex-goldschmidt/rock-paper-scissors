@@ -4,3 +4,11 @@
     text-align: center;
     margin-top: 200px;
 }
+
+#rockButton {
+    margin-right: 15px;
+}
+
+#scissorsButton {
+    margin-left: 15px;
+}
